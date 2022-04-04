@@ -98,7 +98,7 @@ def create_test_data():
     # create tags
     shoes = Tag.create(name="shoes")
     clothes = Tag.create(name="clothes")
-    electronics = Tag.create(name="electronics")
+    wearables = Tag.create(name="wearables")
     household = Tag.create(name="household")
     food = Tag.create(name="food")
     pet_supplies = Tag.create(name="pet_supplies")
@@ -106,7 +106,7 @@ def create_test_data():
     # create producttags
     ProductTag.create(product=salamon, tag=shoes)
     ProductTag.create(product=jacket, tag=clothes)
-    ProductTag.create(product=watch, tag=electronics)
+    ProductTag.create(product=watch, tag=wearables)
     ProductTag.create(product=sweater, tag=clothes)
     ProductTag.create(product=energy, tag=food)
     ProductTag.create(product=leash, tag=pet_supplies)
