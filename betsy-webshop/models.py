@@ -44,6 +44,6 @@ class UserProduct(BaseModel):
 
 
 class Transaction(BaseModel):
-    buyer_id = ForeignKeyField(User)
+    buyer = ForeignKeyField(User)
     product = ForeignKeyField(Product)
     quantity = IntegerField(constraints=[Check("quantity >= 0")])

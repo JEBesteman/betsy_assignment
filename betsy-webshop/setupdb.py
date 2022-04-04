@@ -1,7 +1,12 @@
 from models import *
 import os
 
-# delete database.db if exits
+"""
+To use the test data to check the functions and models, you can call create_test_data()
+To delete the database file for a fresh start you can call delete_database()
+"""
+
+# delete database.db
 def delete_database():
     cwd = os.getcwd()
     database_path = os.path.join(cwd, "database.db")
