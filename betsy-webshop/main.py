@@ -42,7 +42,7 @@ def add_product_to_catalog(user_id: int, product_id):
     try:
         UserProduct.create(user=user_id, product=product_id, quantity=1)
     except:
-        return None
+        return False
 
 
 """ Update the stock quantity of a product
@@ -50,15 +50,12 @@ Because there is no user_id als parameter,
 I have chosen to update Product (database) en not UserProduct.
 """
 
-
+# No try except because Product will not be updated if product_id not match
 def update_stock(product_id: int, new_quantity: int):
-    try:
-        update = Product.update({Product.quantity: new_quantity}).where(
-            Product.id == product_id
-        )
-        update.execute()
-    except:
-        return None
+    update = Product.update({Product.quantity: new_quantity}).where(
+        Product.id == product_id
+    )
+    update.execute()
 
 
 """Handle purchase between buyer and sell for a given product
@@ -75,9 +72,9 @@ def purchase_product(product_id: int, buyer_id: int, quantity: int = 1):
             Transaction.create(buyer=buyer_id, product=product_id, quantity=quantity)
             print("You're transaction is completed!")
             # update stock
-            update_stock(product_id, available_amount)
+        update_stock(product_id, available_amount)
     except:
-        return None
+        return False
 
 
 """Remove a product from an user
@@ -93,4 +90,4 @@ def remove_product(product_id: int):
         product.delete_instance(recursive=True)
     except DoesNotExist:
         print("No product with this id has been found")
-        return None
+        return False
