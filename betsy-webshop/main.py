@@ -72,7 +72,9 @@ def purchase_product(product_id: int, buyer_id: int, quantity: int = 1):
             Transaction.create(buyer=buyer_id, product=product_id, quantity=quantity)
             print("You're transaction is completed!")
             # update stock
-        update_stock(product_id, available_amount)
+            update_stock(product_id, available_amount)
+        else:
+            return False
     except:
         return False
 
