@@ -70,8 +70,6 @@ def purchase_product(product_id: int, buyer_id: int, quantity: int = 1):
         available_amount = product_to_buy.quantity - quantity
         if available_amount >= 0:
             Transaction.create(buyer=buyer_id, product=product_id, quantity=quantity)
-            print("You're transaction is completed!")
-            # update stock
             update_stock(product_id, available_amount)
         else:
             return False
@@ -88,8 +86,6 @@ That is the reason, I choose to remove a product for all users
 def remove_product(product_id: int):
     try:
         product = Product.get_by_id(product_id)
-        print(f"Product with product id {product_id} will be removed!")
         product.delete_instance(recursive=True)
     except DoesNotExist:
-        print("No product with this id has been found")
         return False
